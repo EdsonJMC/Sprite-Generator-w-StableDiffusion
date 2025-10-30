@@ -1,83 +1,107 @@
-# Proyecto: Generador de Assets con IA (Prototipo de I+D)
+# 🧠 AI Asset Generator — R&D Prototype
 
-Este repositorio contiene el código fuente de un prototipo funcional (MVP) para una aplicación web que genera *assets* creativos (como *pixel art*, *sprites* o texturas) utilizando la API de [Replicate](https://replicate.com/) para acceder a modelos de IA generativa.
+This repository contains the source code for a **functional prototype (MVP)** of a web application that generates creative assets — such as **pixel art, sprites, or textures** — using the **[Replicate API](https://replicate.com/)** to access generative AI models.
 
-El objetivo principal de este proyecto no es ser un producto finalizado, sino actuar como una **Prueba de Concepto (PoC)** y una pieza de portafolio que demuestra la capacidad de:
-1.  Integrar rápidamente tecnologías de IA de vanguardia.
-2.  Construir un prototipo *full-stack* (React + Backend seguro).
-3.  Aprender y aplicar nuevos conceptos de arquitectura de software.
-
----
-
-### 🚀 Demo en Vivo
-
-*[Aquí pondrás un enlace a la app desplegada (Vercel/Netlify) o, mejor aún, un GIF o un enlace a un video de Loom de 1 minuto mostrándolo en acción.]*
-
-![Demo Placeholder](https://via.placeholder.com/600x300.png?text=Inserta+un+GIF+o+Video+Demo+Aquí)
-
-(Me quede sin creditos para la generacion de imagen, cuando recargue mas actualizare la DEMO)
+> ⚗️ This project serves as a **Proof of Concept (PoC)** and a **portfolio piece** demonstrating my ability to:
+> - Rapidly integrate cutting-edge AI technologies  
+> - Build a secure, full-stack prototype (React + Node.js)  
+> - Learn and apply modern software architecture concepts  
 
 ---
 
-### 🛠️ Arquitectura y Stack Tecnológico
+## 🚀 Live Demo
 
-Este prototipo utiliza una arquitectura moderna para garantizar que las llaves de API secretas nunca queden expuestas en el *frontend*.
+📺 **Demo Placeholder**
 
-1.  **Frontend:**
-    * **Framework:** [**React** (con Vite) / **SvelteKit** / El que hayas usado]
-    * **Descripción:** Una interfaz de usuario limpia y simple que recopila el *prompt* del usuario y las opciones. Se encarga de mostrar la imagen generada.
+*(I’m currently out of image generation credits — the live demo will be updated once they’re recharged.)*
 
-2.  **Backend:**
-    * **Framework:** [**Node.js (Serverless Function)** en Vercel/Netlify / **Express.js** / El que hayas usado]
-    * **Descripción:** Un solo *endpoint* de API que actúa como intermediario. El *frontend* le envía el *prompt* a este *endpoint*.
-    * **Seguridad:** Este *backend* es el **único** que tiene la `API_KEY` secreta. Recibe la petición, añade la llave de forma segura y llama a la API de Replicate.
-
-3.  **Inteligencia Artificial:**
-    * **Servicio:** [**Replicate.com**]
-    * **Descripción:** Se utiliza la API de Replicate para acceder a modelos de IA pre-entrenados (como Stable Diffusion) especializados en la generación de imágenes.
+👉 [Add a link to your deployed app (Vercel/Netlify)]  
+or include a short **GIF / Loom video** showing it in action.
 
 ---
 
-### 📋 Estado del Proyecto: Prototipo Funcional
+## 🧩 Architecture Overview
 
-El sistema funciona de principio a fin: un usuario puede escribir un *prompt* y recibir una imagen generada por IA.
+This prototype follows a **modern and secure architecture** where all secret API keys remain safe on the backend.
 
-**¿Qué faltaría para un producto de "producción"?**
-* Gestión de usuarios y autenticación.
-* Un sistema de créditos o pagos.
-* Una base de datos para guardar las generaciones de los usuarios.
-* Optimización de la UI y manejo de errores avanzado.
+### 🖥️ Frontend
+- **Framework:** React (Vite) / SvelteKit / [Your chosen stack]  
+- **Purpose:** Collects user prompts and parameters, displays AI-generated assets  
+- **Focus:** Clean UI, responsive layout, and simplicity  
+
+### ⚙️ Backend
+- **Framework:** Node.js (Serverless Function on Vercel/Netlify) / Express.js  
+- **Role:** Secure API proxy between the frontend and Replicate API  
+- **Security:** The backend is the **only** layer that stores the secret `API_KEY`  
+
+### 🤖 Artificial Intelligence
+- **Service:** [Replicate.com](https://replicate.com/)  
+- **Description:** Connects to pre-trained generative AI models (e.g., **Stable Diffusion**) specialized in image generation  
 
 ---
 
-### ⚙️ Cómo ejecutar este proyecto localmente
+## 📋 Project Status — Functional Prototype
 
-1.  **Clonar el repositorio:**
-    ```bash
-    git clone [TU_URL_DE_GITHUB_AQUI]
-    cd [NOMBRE_DEL_REPOSITORIO]
-    ```
+✅ End-to-end functionality confirmed:  
+Users can enter a prompt and receive an AI-generated image.
 
-2.  **Instalar dependencias (Frontend):**
-    ```bash
-    # (Ve a la carpeta del frontend si tienes un monorepo)
-    npm install
-    ```
+**What’s missing for production:**
+- 🔐 User management & authentication  
+- 💳 Credit or payment system  
+- 🗄️ Database for storing generations  
+- 🎨 UI optimization & advanced error handling  
 
-3.  **Instalar dependencias (Backend):**
-    ```bash
-    # (Ve a la carpeta 'api' o del backend)
-    npm install
-    ```
+---
 
-4.  **Variables de Entorno:**
-    * Crea un archivo `.env` en la carpeta de tu *backend* (o en la raíz si usas un framework *full-stack*).
-    * Añade tu llave de Replicate:
-        ```
-        REPLICATE_API_TOKEN="tu_KEY_aqui"
-        ```
+## ⚙️ Local Setup Guide
 
-5.  **Ejecutar el proyecto:**
-    ```bash
-    npm run dev
-    ```
+### 1️⃣ Clone the repository
+```bash
+git clone [YOUR_GITHUB_URL_HERE]
+cd [REPOSITORY_NAME]
+2️⃣ Install frontend dependencies
+bash
+Copiar código
+# If using a monorepo, navigate to the frontend folder
+npm install
+3️⃣ Install backend dependencies
+bash
+Copiar código
+# Navigate to your backend or API folder
+npm install
+4️⃣ Configure environment variables
+Create a .env file in your backend folder (or project root if full-stack):
+
+bash
+Copiar código
+REPLICATE_API_TOKEN="your_KEY_here"
+5️⃣ Run the project
+bash
+Copiar código
+npm run dev
+🧠 About This Project
+This prototype was built as part of my ongoing exploration in R&D (Research & Development) — combining software engineering, AI integration, and creative automation.
+
+My focus is on:
+
+Experimental prototyping
+
+Secure full-stack architectures
+
+Applied artificial intelligence
+
+🧰 Tech Stack
+Layer	Technology
+Frontend	React / Vite
+Backend	Node.js / Express / Serverless
+AI Service	Replicate API (Stable Diffusion)
+Deployment	Vercel / Netlify
+Language	JavaScript / TypeScript
+
+💬 Contact & Collaboration
+Interested in AI-powered creative tools or experimental software projects?
+Feel free to connect or open an issue!
+
+✉️ emijangosdev@gmail.com
+
+🧪 “Innovation begins where curiosity meets experimentation.”
