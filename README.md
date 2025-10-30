@@ -15,7 +15,7 @@ El objetivo principal de este proyecto no es ser un producto finalizado, sino ac
 
 ![Demo Placeholder](https://via.placeholder.com/600x300.png?text=Inserta+un+GIF+o+Video+Demo+Aquí)
 
-(me quede sin creditos para la generacion de imagen, cuando recargue mas actualizare la DEMO)
+(Me quede sin creditos para la generacion de imagen, cuando recargue mas actualizare la DEMO)
 
 ---
 
@@ -23,16 +23,16 @@ El objetivo principal de este proyecto no es ser un producto finalizado, sino ac
 
 Este prototipo utiliza una arquitectura moderna para garantizar que las llaves de API secretas nunca queden expuestas en el *frontend*.
 
-1.  **Frontend (El Lienzo):**
+1.  **Frontend:**
     * **Framework:** [**React** (con Vite) / **SvelteKit** / El que hayas usado]
     * **Descripción:** Una interfaz de usuario limpia y simple que recopila el *prompt* del usuario y las opciones. Se encarga de mostrar la imagen generada.
 
-2.  **Backend (El Puente Seguro):**
+2.  **Backend:**
     * **Framework:** [**Node.js (Serverless Function)** en Vercel/Netlify / **Express.js** / El que hayas usado]
     * **Descripción:** Un solo *endpoint* de API que actúa como intermediario. El *frontend* le envía el *prompt* a este *endpoint*.
     * **Seguridad:** Este *backend* es el **único** que tiene la `API_KEY` secreta. Recibe la petición, añade la llave de forma segura y llama a la API de Replicate.
 
-3.  **Inteligencia Artificial (El Cerebro):**
+3.  **Inteligencia Artificial:**
     * **Servicio:** [**Replicate.com**]
     * **Descripción:** Se utiliza la API de Replicate para acceder a modelos de IA pre-entrenados (como Stable Diffusion) especializados en la generación de imágenes.
 
@@ -40,7 +40,7 @@ Este prototipo utiliza una arquitectura moderna para garantizar que las llaves d
 
 ### 📋 Estado del Proyecto: Prototipo Funcional
 
-Como prototipo de I+D, el **objetivo de aprendizaje y viabilidad ya se ha cumplido**. El sistema funciona de principio a fin: un usuario puede escribir un *prompt* y recibir una imagen generada por IA.
+El sistema funciona de principio a fin: un usuario puede escribir un *prompt* y recibir una imagen generada por IA.
 
 **¿Qué faltaría para un producto de "producción"?**
 * Gestión de usuarios y autenticación.
@@ -74,7 +74,7 @@ Como prototipo de I+D, el **objetivo de aprendizaje y viabilidad ya se ha cumpli
     * Crea un archivo `.env` en la carpeta de tu *backend* (o en la raíz si usas un framework *full-stack*).
     * Añade tu llave de Replicate:
         ```
-        REPLICATE_API_TOKEN="tu_llave_secreta_aqui"
+        REPLICATE_API_TOKEN="tu_KEY_aqui"
         ```
 
 5.  **Ejecutar el proyecto:**
