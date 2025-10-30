@@ -1,16 +1,16 @@
-// Modo ESM: Vercel y "type":"module" requieren import/export
+// ESM module: using import/export because the project is "type":"module"
 import Replicate from "replicate";
 import dotenv from "dotenv";
 
-// Cargar variables de entorno desde .env.local en desarrollo
+// Load environment variables from .env.local during local development
 dotenv.config({ path: ".env.local" });
 
-// Inicializamos Replicate con nuestro API Token
+// Initialize Replicate client using our API token
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 });
 
-// Handler de la función serverless
+// Serverless API handler
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.status(405).json({ message: 'Method Not Allowed' });
@@ -18,7 +18,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Validar credenciales antes de llamar a Replicate
+    // Guard: ensure the API token is present before calling Replicate
     if (!process.env.REPLICATE_API_TOKEN) {
       res.status(401).json({ message: 'Missing REPLICATE_API_TOKEN on server' });
       return;
@@ -34,10 +34,8 @@ export default async function handler(req, res) {
       return;
     }
 
-    // --- INICIO DEL CÓDIGO NUEVO ---
-    // 3. Llamar a la API de Replicate
-    // (Usamos un modelo público y estable: Stable Diffusion)
-    // Usar versión específica válida de Stable Diffusion
+    // Call Replicate to generate an image (with a pixel‑art flavor)
+    // Use a specific Stable Diffusion version known to be accessible
     const output = await replicate.run(
       "stability-ai/stable-diffusion:db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf",
       {
@@ -46,9 +44,8 @@ export default async function handler(req, res) {
         }
       }
     );
-    // --- FIN DEL CÓDIGO NUEVO ---
 
-    // 4. Enviar la URL de la imagen de vuelta al frontend
+    // Return the first image URL back to the client
     if (output && output.length > 0) {
       res.status(200).json({ imageUrl: output[0] });
     } else {
@@ -56,17 +53,17 @@ export default async function handler(req, res) {
     }
 
   } catch (error) {
-    // Intentar mapear código de estado desde el mensaje
+    // Try to infer the HTTP status code from the error text
     const m = String(error.message || '').match(/status\s(\d+)/);
     const status = m ? Number(m[1]) : 500;
-    // Intentar extraer JSON embebido en el mensaje
+    // Try to parse an embedded JSON payload from the error message
     let serverDetail;
     try {
       const jsonMatch = String(error.message).match(/\{[\s\S]*\}$/);
       serverDetail = jsonMatch ? JSON.parse(jsonMatch[0]) : undefined;
     } catch (_) {}
 
-    console.error("Error en la API de Replicate:", error.message);
+    console.error("Replicate API error:", error.message);
     res.status(status).json({
       message: serverDetail?.detail || error.message || 'Failed to generate image',
       title: serverDetail?.title,

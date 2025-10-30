@@ -1,14 +1,14 @@
 import { useState } from 'preact/hooks';
-import './app.css'; // Este archivo debe existir de la plantilla inicial
+import './app.css'; // Stylesheet provided by the starter template
 
 export function App() {
-  // Estado para guardar lo que el usuario escribe
+  // User's text input prompt
   const [prompt, setPrompt] = useState('');
-  // Estado para guardar la URL de la imagen generada
+  // URL of the generated image
   const [imageUrl, setImageUrl] = useState(null);
-  // Estado para saber si estamos "cargando"
+  // Loading state while generation is in progress
   const [loading, setLoading] = useState(false);
-  // Estado para mostrar errores en UI
+  // Error message shown in the UI
   const [errorMessage, setErrorMessage] = useState(null);
 
   const handleSubmit = async (e) => {
@@ -18,19 +18,19 @@ export function App() {
       setImageUrl(null);
       setErrorMessage(null);
     
-    // --- TODO: Aquí llamaremos a nuestra API (Paso 2 y 3 del MVP) ---
+    // Make a request to our backend API
     
 try {
-      const response = await fetch('/api/generate', { // Llama a nuestro backend
+      const response = await fetch('/api/generate', { // Call our backend
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ prompt: prompt }), // Envía el prompt en el body
+        body: JSON.stringify({ prompt: prompt }), // Send the prompt in the JSON body
       });
 
       if (!response.ok) {
-        // Intentar leer mensaje de error del servidor
+        // Try to read a detailed error message from the server
         let details = null;
         try {
           details = await response.json();
@@ -42,13 +42,13 @@ try {
       }
 
       const data = await response.json();
-      setImageUrl(data.imageUrl); // ¡Establecemos la imagen real!
+      setImageUrl(data.imageUrl); // Show the generated image in the UI
 
     } catch (error) {
       console.error('Error al llamar al API:', error);
       setErrorMessage(error.message);
     } finally {
-      setLoading(false); // Quita el estado de "cargando"
+      setLoading(false); // End the loading state
     }
   };
 
@@ -73,7 +73,7 @@ try {
         </button>
       </form>
 
-      {/* Área para mostrar la imagen generada */}
+      {/* Area to display the generated image */}
       {loading && (
         <p style={{ textAlign: 'center', marginTop: '20px' }}>Cargando...</p>
       )}
