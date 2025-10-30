@@ -15,6 +15,8 @@ El objetivo principal de este proyecto no es ser un producto finalizado, sino ac
 
 ![Demo Placeholder](https://via.placeholder.com/600x300.png?text=Inserta+un+GIF+o+Video+Demo+Aquí)
 
+(me quede sin creditos para la generacion de imagen, cuando recargue mas actualizare la DEMO)
+
 ---
 
 ### 🛠️ Arquitectura y Stack Tecnológico
